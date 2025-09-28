@@ -1,8 +1,7 @@
 from typing import Callable, List, Tuple
 
 import pytest
-import math
-from hypothesis import given, assume
+from hypothesis import given
 from hypothesis.strategies import lists
 
 from functools import cmp_to_key
@@ -116,7 +115,6 @@ def test_sigmoid(a: float) -> None:
     assert 1.0 - out == pytest.approx(sigmoid(-a), rel=0, abs=1e-12)
     assert sigmoid(0.0) == pytest.approx(0.5, rel=0, abs=1e-12)
 
-
     eps = 1e-6
     out_plus = sigmoid(a + eps)
     out_minus = sigmoid(a - eps)
@@ -132,9 +130,9 @@ def test_transitive(a: float, b: float, c: float) -> None:
     def cmp(a: float, b: float) -> int:
         return lt(b, a) - lt(a, b)
     a, b, c = sorted([a, b, c], key=cmp_to_key(cmp))
-    
+
     if lt(a, b) and lt(b, c):
-        assert lt(a,c)
+        assert lt(a, c)
 
 
 @pytest.mark.task0_2

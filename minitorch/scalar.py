@@ -14,7 +14,6 @@ from .scalar_functions import (
     Inv,
     Log,
     Mul,
-    Neg,
     ReLU,
     ScalarFunction,
     Sigmoid,

@@ -31,52 +31,68 @@ from typing import Callable, Iterable
 # For is_close:
 # $f(x) = |x - y| < 1e-2$
 
+
 def mul(a: float, b: float):
     return a * b
+
 
 def id(a: float):
     return a
 
+
 def add(a: float, b: float):
     return a + b
+
 
 def neg(a: float):
     return -a
 
+
 def lt(a: float, b: float):
     return a < b
+
 
 def eq(a: float, b: float):
     return a == b
 
+
 def max(a: float, b: float):
     return a if a > b else b
+
 
 def is_close(a: float, b: float, eps: float = 1e-8):
     return abs(a - b) < eps
 
+
 def exp(a: float):
     return math.exp(a)
 
+
 def sigmoid(a: float):
-    return 1.0 / (1.0 + math.exp(-a)) if a >=0 else math.exp(a) / (1.0 + math.exp(a))
+    return 1.0 / (1.0 + math.exp(-a)) if a >= 0 else math.exp(a) / (1.0 + math.exp(a))
+
 
 def relu(a: float):
     return a * (a > 0)
 
+
 def log(a: float):
     return math.log(a)
 
+
 def inv(a: float):
     return 1 / a
+
 
 def log_back(a: float, n: float):
     if a <= 0:
         raise Exception
     return n / a
 
+
 def inv_back(a: float, n: float):
     return -n / (a**2)
+
 
 def relu_back(a: float, n: float):
     return n * (a > 0)
@@ -100,8 +116,10 @@ def relu_back(a: float, n: float):
 def map(func: Callable, l: Iterable):
     return [func(el) for el in l]
 
+
 def zipWith(func: Callable, first: Iterable, second: Iterable):
     return [func(el1, el2) for el1, el2 in zip(first, second)]
+
 
 def reduce(func: Callable, l: Iterable):
     it = iter(l)
@@ -113,17 +131,21 @@ def reduce(func: Callable, l: Iterable):
         acc = func(acc, x)
     return acc
 
+
 def negList(l: Iterable):
     return map(neg, l)
 
+
 def addLists(a: Iterable, b: Iterable):
     return zipWith(add, a, b)
+
 
 def sum(l: Iterable):
     try:
         return reduce(add, l)
     except TypeError:
         return 0
+
 
 def prod(l: Iterable):
     try:

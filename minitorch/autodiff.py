@@ -82,7 +82,7 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
         if v.history is not None:
             for p in v.parents:
                 dfs(p)
-        
+
         order.append(v)
 
     dfs(variable)
